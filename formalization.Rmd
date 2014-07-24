@@ -1,0 +1,21 @@
+Kuhhandel Formalization
+========================================================
+
+What decisions does a player make when playing Kuhhandel?
+---------------------------------------------------------
+The game has two actions: auctioning and trading. In the auction stage the active player needs to decide when to close an auction and sell a card or buy the card himself. The other players need to decide if they want the card and how much they will bid in the auction. In the trading stage, the active player has decided to trade for a card with another player. In this case they need to decide the offer for the card that is auctioned.
+
+Card auction
+--------------------------------------------------------
+The auction happens in real time, with no turns. Therefore, a mechanism is required, that can simulate real time interaction. One possible solution is randomization. This aspect is more important than initially thought. Who bids first on a card and who reacts to the bid seems to be quite important to me. However, the game can only realize this in a serial manner because the players are actually functions. An alternative to the randomization method would be to create a REPL where the player scripts exist in the background. The REPL would actually be interpreted by the players and actions in the REPL would cause reactions.
+Another alternative is an algorithm who requests a reaction time from each bidding player at the beginning of each turn. In a sense the player functions then bid for the bid. If the simulation is realized in real time, the bid can be transformed into actual waiting time, in which a human player might intervene. However, if no human player is present, the reaction-request algorithm simply selects the smallest reaction time and asks the corresponding player for a bid. This will probably become my solution. The interesting part here is that I can actually formalize the reaction time using a variable that expresse the willingness to bid.
+
+### Auction Variables:
+
+* Highest Personal Offer - Or: How much am I willing to bid for any card?
+* Highest Current Offer - Or: How much am I willing to bid for this particular card?
+* Current Offer - What was the last offer for this card?
+
+TODO:
+------------------------------------------
+* The player who is auction master can't make biddings, he needs to be removed from the auction player list
